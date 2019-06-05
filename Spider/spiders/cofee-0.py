@@ -4,9 +4,9 @@ import re
 class CofeeSpider(scrapy.Spider):
     name = 'cofee0'
     start_urls = [
-        'http://cafef.vn/timeline/31/trang-301.chn', 
-        'http://cafef.vn/timeline/112/trang-301.chn',
-        'http://cafef.vn/timeline/35/trang-301.chn',
+        'http://cafef.vn/timeline/31/trang-1551.chn', 
+        'http://cafef.vn/timeline/112/trang-1551.chn',
+        'http://cafef.vn/timeline/35/trang-1551.chn',
         # 'http://cafef.vn/timeline/36/trang-1.chn',
         # 'http://cafef.vn/timeline/34/trang-1.chn',
         # 'http://cafef.vn/timeline/32/trang-1.chn',
@@ -27,7 +27,7 @@ class CofeeSpider(scrapy.Spider):
     def parse(self, response):
         yield response.follow(response.request.url, self.parse_page)
 
-    def parse_page(self, response, depth=350):
+    def parse_page(self, response, depth=1600):
         articles = response.css('.tlitem a::attr(href)').getall()
         next_page, page_number = self.next(response.request.url)
         for a in articles:

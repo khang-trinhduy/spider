@@ -10,7 +10,7 @@ class VnexpSpider(scrapy.Spider):
      'doi-song', 'suc-khoe', 'giao-duc', 
      'phap-luat', 'the-thao', 'giai-tri',
      'so-hoa', 'oto-xe-may', 'kinh-doanh',
-     'thoi-su', 'giao-duc']
+     'the-gioi', 'giao-duc']
     title = ['.sidebar_1 header + h1::text']
     date = ['.sidebar_1 header span::text']
     description = ['.sidebar_1 .description::text']
@@ -26,7 +26,7 @@ class VnexpSpider(scrapy.Spider):
         for href in response.css('nav.p_menu a::attr(href)'):
             yield response.follow(href, self.parse_category)
 
-    def parse_category(self, response, depth=1000000):
+    def parse_category(self, response, depth=100000):
         for domain in self.skip_domains:
             if domain in response.url:
                 return
